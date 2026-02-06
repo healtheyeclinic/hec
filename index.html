@@ -260,20 +260,23 @@
         nav ul {
             display: flex;
             list-style: none;
-            gap: 3.5rem;
+            gap: 1rem;
         }
 
         nav a {
             color: var(--text-medium);
             text-decoration: none;
             transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            padding: 1rem 2rem;
+            padding: 1.2rem 2.2rem;
             border-radius: 60px;
             font-weight: 600;
             font-size: 1.05rem;
             position: relative;
             overflow: hidden;
             letter-spacing: 1px;
+            display: inline-block;
+            min-width: 100px;
+            text-align: center;
         }
 
         nav a::before {
@@ -469,6 +472,7 @@
         section {
             padding: 10rem 4rem;
             position: relative;
+            scroll-margin-top: 120px;
         }
 
         section::before {
@@ -925,6 +929,8 @@
 
         @media (max-width: 1200px) {
             nav .container, .container { padding: 0 2.5rem; }
+            nav ul { gap: 0.8rem; }
+            nav a { padding: 1.1rem 2rem; }
             section { padding: 7rem 2.5rem; }
             .hero h2 { font-size: 4rem; }
             section h2 { font-size: 3.2rem; }
@@ -939,14 +945,14 @@
             nav .logo-img { width: 60px; height: 60px; }
             nav h1 { font-size: 1.7rem; letter-spacing: 2px; }
             nav h1 .en { font-size: 0.8rem; letter-spacing: 2px; margin-top: 0.4rem; }
-            nav ul { flex-wrap: wrap; justify-content: center; gap: 1rem; }
-            nav a { padding: 0.7rem 1.4rem; font-size: 0.9rem; letter-spacing: 0.5px; }
+            nav ul { flex-wrap: wrap; justify-content: center; gap: 0.8rem; }
+            nav a { padding: 1rem 1.8rem; font-size: 0.95rem; letter-spacing: 0.5px; min-width: 90px; }
             .hero { padding: 7rem 2rem 9rem; }
             .hero h2 { font-size: 2.8rem; margin-bottom: 2.5rem; letter-spacing: 3px; line-height: 1.4; }
             .hero h2::before, .hero h2::after { display: none; }
             .hero p { font-size: 1.2rem; margin-bottom: 3.5rem; letter-spacing: 1.5px; line-height: 1.8; }
             .cta-button { padding: 1.3rem 2.8rem; font-size: 1.05rem; letter-spacing: 2px; }
-            section { padding: 6rem 2rem; }
+            section { padding: 6rem 2rem; scroll-margin-top: 180px; }
             section h2 { font-size: 2.5rem; letter-spacing: 3px; margin-bottom: 2rem; line-height: 1.4; }
             section h2::before, section h2::after { display: none; }
             .section-subtitle { font-size: 1rem; margin-bottom: 4rem; letter-spacing: 2px; }
@@ -984,7 +990,7 @@
             .hero h2 { font-size: 2.3rem; letter-spacing: 2px; }
             .hero p { font-size: 1.05rem; }
             .cta-button { padding: 1.1rem 2.3rem; font-size: 1rem; }
-            section { padding: 5rem 1.5rem; }
+            section { padding: 5rem 1.5rem; scroll-margin-top: 160px; }
             section h2 { font-size: 2.1rem; }
             .about-content { padding: 2.5rem 2rem; font-size: 1rem; }
             .service-card { padding: 2.5rem 2rem; }
@@ -1008,7 +1014,7 @@
                 <h1>合安眼科<span class="en">HEALTH EYE CLINIC</span></h1>
             </div>
             <ul>
-                <li><a href="#about">關於眼科</a></li>
+                <li><a href="#about">關於我們</a></li>
                 <li><a href="#services">服務項目</a></li>
                 <li><a href="#team">醫師介紹</a></li>
                 <li><a href="#testimonials">患者回饋</a></li>
@@ -1042,7 +1048,7 @@
     <!-- 服務項目 -->
     <section id="services" class="services">
         <div class="container">
-            <h2>眼科服務項目</h2>
+            <h2>服務項目</h2>
             <p class="section-subtitle">PROFESSIONAL EYE CARE SERVICES</p>
             <div class="services-grid">
                 <div class="service-card" style="background: linear-gradient(135deg, #ffffff 0%, #f5f9fd 100%);">
@@ -1082,7 +1088,7 @@
     <!-- 醫師介紹 -->
     <section id="team" class="team">
         <div class="container">
-            <h2>眼科醫師介紹</h2>
+            <h2>醫師介紹</h2>
             <p class="section-subtitle">OUR OPHTHALMOLOGIST</p>
             <div class="team-member">
                 <div class="team-photo">
