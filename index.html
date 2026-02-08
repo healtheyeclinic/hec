@@ -67,7 +67,62 @@
       }
     }
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "白內障手術後多久可以恢復？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "大部分患者術後隔天即可感受到視力明顯改善。完整恢復約需 1 至 4 週，期間需遵照醫囑使用眼藥水，保持乾淨並按時回診。術後隔天、三天、一週會安排回診追蹤。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "近視控制幾歲開始比較好？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "建議最早四歲即可安排檢查。學童若發現遠視儲備量不足就應該開始控制，此階段眼球發育快，及早介入可有效減緩度數增長。合安眼科提供角膜塑型片、近視控制日拋隱形眼鏡、離焦眼鏡及各濃度散瞳劑等多元方案。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "白內障手術有健保給付嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "白內障手術健保有給付基本的人工水晶體。若選擇功能性人工水晶體（如三焦點、延焦、散光矯正等），則需自費差額。建議諮詢醫師根據個人需求選擇合適的方案。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "多久應該做一次眼科檢查？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "一般成人建議每 1 年做一次完整眼科檢查。55 歲以上、高度近視、糖尿病患者、有青光眼家族史者，建議每半年檢查。學童則建議穩定情況下至少每三個月追蹤一次。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "角膜塑型片安全嗎？成人也可以戴嗎？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "角膜塑型片通過 FDA 核准，是安全有效的近視控制方式。需經由眼科醫師評估角膜狀況後才能配戴，並定期回診追蹤。成人也可以佩戴。"
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "合安眼科怎麼預約？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "可直接撥打診所電話 02-2378-8288 預約。看診時間為週一、二、四、五早診 09:00–12:00 及晚診 17:00–21:00，週六僅早診，週三及週日休診。"
+          }
+        }
+      ]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@400;700;900&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
     <style>
@@ -1423,6 +1478,212 @@
             footer { padding: 3rem 1.5rem; font-size: 0.85rem; }
         }
 
+        /* ===== Hamburger Menu ===== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 1001;
+            background: none;
+            border: none;
+        }
+        .hamburger span {
+            display: block;
+            width: 28px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+            transition: all 0.35s ease;
+        }
+        .hamburger.active span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger.active span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            nav ul {
+                position: fixed;
+                top: 0; right: -100%;
+                width: 75%;
+                max-width: 320px;
+                height: 100vh;
+                background: rgba(255,255,255,0.97);
+                backdrop-filter: blur(30px);
+                -webkit-backdrop-filter: blur(30px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 2rem;
+                box-shadow: -10px 0 40px rgba(0,0,0,0.15);
+                transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1000;
+                flex-wrap: nowrap;
+            }
+            nav ul.open { right: 0; }
+            nav ul li { width: 100%; }
+            nav a { width: 100%; text-align: center; font-size: 1.1rem; padding: 1.1rem 1.5rem; }
+            .menu-overlay {
+                position: fixed;
+                top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(0,0,0,0.4);
+                z-index: 999;
+                opacity: 0;
+                pointer-events: none;
+                transition: opacity 0.3s ease;
+            }
+            .menu-overlay.active { opacity: 1; pointer-events: all; }
+            nav .container { flex-direction: row; }
+        }
+
+        /* ===== FAQ Section ===== */
+        .faq {
+            background: radial-gradient(circle at 20% 20%, rgba(93,142,192,0.03) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(127,169,216,0.03) 0%, transparent 50%),
+                        var(--bg-white);
+        }
+        .faq-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: white;
+            border-radius: 20px;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+            border: 2px solid rgba(93,142,192,0.08);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .faq-item:hover {
+            border-color: rgba(93,142,192,0.2);
+            box-shadow: 0 8px 30px rgba(93,142,192,0.1);
+        }
+        .faq-question {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.6rem 2rem;
+            cursor: pointer;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            letter-spacing: 0.5px;
+            gap: 1rem;
+            user-select: none;
+            transition: color 0.3s;
+        }
+        .faq-question:hover { color: var(--primary); }
+        .faq-icon {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            border-radius: 50%;
+            background: rgba(93,142,192,0.08);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: var(--primary);
+            transition: all 0.35s ease;
+        }
+        .faq-item.active .faq-icon {
+            background: var(--primary);
+            color: white;
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            padding: 0 2rem;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding: 0 2rem 1.8rem;
+        }
+        .faq-answer p {
+            font-size: 1.05rem;
+            line-height: 2;
+            color: var(--text-light);
+        }
+
+        /* ===== Schedule Table ===== */
+        .schedule-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 16px;
+            overflow: hidden;
+            font-size: 1rem;
+            margin-top: 1.5rem;
+        }
+        .schedule-table th,
+        .schedule-table td {
+            padding: 0.9rem 0.6rem;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+        }
+        .schedule-table thead th {
+            background: rgba(255,255,255,0.15);
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+        .schedule-table tbody td {
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .schedule-table tbody tr:last-child td { border-bottom: none; }
+        .sch-open {
+            color: white;
+            font-weight: 700;
+        }
+        .sch-closed {
+            color: rgba(255,255,255,0.3);
+            font-size: 0.85rem;
+        }
+        .sch-today {
+            background: rgba(255,255,255,0.1);
+        }
+        .schedule-note {
+            text-align: center;
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        /* ===== Scroll Reveal ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Keep h2 centered while animating */
+        section h2.reveal {
+            transform: translateX(-50%) translateY(50px);
+        }
+        section h2.reveal.visible {
+            transform: translateX(-50%) translateY(0);
+        }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        @media (max-width: 768px) {
+            .faq-question { font-size: 1.05rem; padding: 1.3rem 1.5rem; }
+            .faq-answer { padding-left: 1.5rem; padding-right: 1.5rem; }
+            .faq-item.active .faq-answer { padding: 0 1.5rem 1.5rem; }
+            .schedule-table { font-size: 0.85rem; }
+            .schedule-table th, .schedule-table td { padding: 0.7rem 0.3rem; }
+        }
+
         /* ===== Review Modal ===== */
         .review-trigger-btn {
             display: inline-block;
@@ -1694,6 +1955,7 @@
 </head>
 <body>
     <!-- 導航列 -->
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
     <nav id="navbar">
         <div class="container">
             <div class="logo">
@@ -1702,12 +1964,16 @@
                 </div>
                 <h1>合安眼科<span class="en">HEALTH EYE CLINIC</span></h1>
             </div>
-            <ul>
-                <li><a href="#about">關於我們</a></li>
-                <li><a href="#services">服務項目</a></li>
-                <li><a href="#team">醫師介紹</a></li>
-                <li><a href="#testimonials">患者回饋</a></li>
-                <li><a href="#appointment">預約資訊</a></li>
+            <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="開啟選單">
+                <span></span><span></span><span></span>
+            </button>
+            <ul id="navMenu">
+                <li><a href="#about" onclick="closeMenu()">關於我們</a></li>
+                <li><a href="#services" onclick="closeMenu()">服務項目</a></li>
+                <li><a href="#team" onclick="closeMenu()">醫師介紹</a></li>
+                <li><a href="#testimonials" onclick="closeMenu()">患者回饋</a></li>
+                <li><a href="#faq" onclick="closeMenu()">常見問題</a></li>
+                <li><a href="#appointment" onclick="closeMenu()">預約資訊</a></li>
             </ul>
         </div>
     </nav>
@@ -1725,9 +1991,9 @@
     <!-- 關於我們 -->
     <section id="about" class="about">
         <div class="container">
-            <h2>關於我們</h2>
-            <p class="section-subtitle">ABOUT US</p>
-            <div class="about-content">
+            <h2 class="reveal">關於我們</h2>
+            <p class="section-subtitle reveal">ABOUT US</p>
+            <div class="about-content reveal reveal-delay-1">
                 <p>合安眼科是台北市信義區的眼科診所，位於六張犁捷運站旁，由眼科專科醫師吳昱愷院長領軍。作為台北白內障手術首選，我們提供專業的白內障手術、近視控制、眼科檢查等完整眼科醫療服務。</p>
                 <p>本眼科診所特別專精於<strong>白內障手術</strong>與<strong>近視控制治療</strong>。我們採用最新的微創白內障手術技術，具有傷口小、恢復快的優勢。針對學童近視控制，提供角膜塑形、控制眼鏡等完整解決方案。從兒童視力保健到成人眼疾治療，我們都以最高標準的醫療品質為您服務。</p>
             </div>
@@ -1737,10 +2003,10 @@
     <!-- 服務項目 -->
     <section id="services" class="services">
         <div class="container">
-            <h2>服務項目</h2>
-            <p class="section-subtitle">PROFESSIONAL EYE CARE SERVICES</p>
+            <h2 class="reveal">服務項目</h2>
+            <p class="section-subtitle reveal">PROFESSIONAL EYE CARE SERVICES</p>
             <div class="services-grid">
-                <div class="service-card" style="background: linear-gradient(135deg, #ffffff 0%, #f5f9fd 100%);" onclick="openServiceModal('cataract')">
+                <div class="service-card reveal" style="background: linear-gradient(135deg, #ffffff 0%, #f5f9fd 100%);" onclick="openServiceModal('cataract')">
                     <div class="service-icon">
                         <svg viewBox="0 0 48 48">
                             <path class="si-stroke" d="M4 24c0 0 8-14 20-14s20 14 20 14-8 14-20 14S4 24 4 24z"/>
@@ -1758,7 +2024,7 @@
                     <p>白內障手術專家，採用最先進的微創技術，傷口小、恢復快，提供安全有效的白內障治療方案。</p>
                     <div class="card-more">了解更多 <span class="arrow">→</span></div>
                 </div>
-                <div class="service-card" style="background: linear-gradient(135deg, #ffffff 0%, #f5f9fd 100%);" onclick="openServiceModal('myopia')">
+                <div class="service-card reveal reveal-delay-1" style="background: linear-gradient(135deg, #ffffff 0%, #f5f9fd 100%);" onclick="openServiceModal('myopia')">
                     <div class="service-icon">
                         <svg viewBox="0 0 56 56">
                             <path class="si-stroke" d="M8 24c0 0 8-12 20-12s20 12 20 12-8 12-20 12S8 24 8 24z" stroke-width="1.8"/>
@@ -1778,7 +2044,7 @@
                     <p>專業的兒童視力檢查與近視控制方案，包含夜戴型角膜塑型片、日拋近視控制隱形眼鏡、離焦眼鏡、散瞳劑治療等，守護孩子的視力健康。是眼科診所中的近視控制專家。</p>
                     <div class="card-more">了解更多 <span class="arrow">→</span></div>
                 </div>
-                <div class="service-card" onclick="openServiceModal('general')">
+                <div class="service-card reveal reveal-delay-2" onclick="openServiceModal('general')">
                     <div class="service-icon">
                         <svg viewBox="0 0 48 48">
                             <circle class="si-stroke" cx="20" cy="20" r="12"/>
@@ -1796,7 +2062,7 @@
                     <p>完整的眼科檢查，包括視力檢查、眼壓測量、眼底檢查，早期發現眼疾問題。作為眼科診所，我們提供專業的眼科診斷。</p>
                     <div class="card-more">了解更多 <span class="arrow">→</span></div>
                 </div>
-                <div class="service-card" onclick="openServiceModal('glasses')">
+                <div class="service-card reveal" onclick="openServiceModal('glasses')">
                     <div class="service-icon">
                         <svg viewBox="0 0 48 48">
                             <circle class="si-stroke" cx="15" cy="24" r="10"/>
@@ -1816,7 +2082,7 @@
                     <p>專業驗光服務，精準配鏡，提供最舒適的視覺體驗。我們診所的驗光師具有豐富經驗。</p>
                     <div class="card-more">了解更多 <span class="arrow">→</span></div>
                 </div>
-                <div class="service-card" onclick="openServiceModal('disease')">
+                <div class="service-card reveal reveal-delay-1" onclick="openServiceModal('disease')">
                     <div class="service-icon">
                         <svg viewBox="0 0 48 48">
                             <rect class="si-stroke" x="12" y="16" width="20" height="26" rx="4"/>
@@ -1833,7 +2099,7 @@
                     <p>近視、遠視、散光、老花、青光眼、結膜炎、乾眼症等眼疾的全面專業治療。</p>
                     <div class="card-more">了解更多 <span class="arrow">→</span></div>
                 </div>
-                <div class="service-card" onclick="openServiceModal('checkup')">
+                <div class="service-card reveal reveal-delay-2" onclick="openServiceModal('checkup')">
                     <div class="service-icon">
                         <svg viewBox="0 0 48 48">
                             <path class="si-stroke" d="M24 4L8 12v12c0 12 7 19 16 22 9-3 16-10 16-22V12z"/>
@@ -1856,9 +2122,9 @@
     <!-- 醫師介紹 -->
     <section id="team" class="team">
         <div class="container">
-            <h2>醫師介紹</h2>
-            <p class="section-subtitle">OUR OPHTHALMOLOGIST</p>
-            <div class="team-member">
+            <h2 class="reveal">醫師介紹</h2>
+            <p class="section-subtitle reveal">OUR OPHTHALMOLOGIST</p>
+            <div class="team-member reveal reveal-delay-1">
                 <div class="team-photo">
                     <img src="doctor.jpg" alt="吳昱愷醫師 - 台北眼科診所白內障手術專家">
                 </div>
@@ -1877,8 +2143,8 @@
     <!-- 患者回饋 -->
     <section id="testimonials" class="testimonials">
         <div class="container">
-            <h2>患者回饋</h2>
-            <p class="section-subtitle">PATIENT TESTIMONIALS</p>
+            <h2 class="reveal">患者回饋</h2>
+            <p class="section-subtitle reveal">PATIENT TESTIMONIALS</p>
             <div class="testimonials-grid">
                 <div class="testimonial-card">
                     <div class="testimonial-header">
@@ -2004,30 +2270,124 @@
         </div>
     </div>
 
+    <!-- 常見問題 -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <h2 class="reveal">常見問題</h2>
+            <p class="section-subtitle reveal">FAQ</p>
+            <div class="faq-list">
+                <div class="faq-item reveal">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>白內障手術後多久可以恢復？</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>大部分患者術後隔天即可感受到視力明顯改善。完整恢復約需 1 至 4 週，期間需遵照醫囑使用眼藥水，保持乾淨並按時回診。術後隔天、三天、一週會安排回診追蹤，確保恢復狀況良好。</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-1">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>近視控制幾歲開始比較好？</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>建議最早 4 歲即可安排檢查。學童若發現遠視儲備量不足就應該開始控制，此階段眼球發育快，及早介入可有效減緩度數增長。合安眼科提供角膜塑型片、近視控制日拋隱形眼鏡、離焦眼鏡及各濃度散瞳劑等多元方案，會依據孩子的狀況推薦最適合的方式。</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-1">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>白內障手術有健保給付嗎？</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>白內障手術健保有給付基本的人工水晶體。若選擇功能性人工水晶體（如三焦點、延焦、散光矯正等），則需自費差額。建議諮詢醫師根據個人需求選擇合適的方案。</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-2">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>多久應該做一次眼科檢查？</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>一般成人建議每 1 年做一次完整眼科檢查。55 歲以上、高度近視、糖尿病患者、有青光眼家族史者，建議每半年檢查。學童則建議穩定情況下至少每三個月追蹤一次。</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-2">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>角膜塑型片安全嗎？成人也可以戴嗎？</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>角膜塑型片通過 FDA 核准，是安全有效的近視控制方式。需經由眼科醫師評估角膜狀況後才能配戴，並定期回診追蹤。成人也可以佩戴。</p>
+                    </div>
+                </div>
+                <div class="faq-item reveal reveal-delay-3">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span>合安眼科怎麼預約？</span>
+                        <span class="faq-icon">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>可直接撥打診所電話 <a href="tel:02-2378-8288" style="color:var(--primary);font-weight:600;">02-2378-8288</a> 預約。看診時間為週一、二、四、五早診 09:00–12:00 及晚診 17:00–21:00，週六僅早診，週三及週日休診。診所位於六張犁捷運站步行約 2 分鐘處。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- 預約資訊 -->
     <section id="appointment" class="appointment">
         <div class="container">
-            <h2>預約資訊</h2>
-            <p class="section-subtitle">MAKE AN APPOINTMENT</p>
+            <h2 class="reveal">預約資訊</h2>
+            <p class="section-subtitle reveal">MAKE AN APPOINTMENT</p>
             <div class="info-grid">
-                <div class="info-card">
+                <div class="info-card reveal">
                     <h3>📞 聯絡電話</h3>
                     <p style="font-size: 1.6rem; font-weight: bold; margin-top: 2rem;">
                         <a href="tel:02-2378-8288" style="color: var(--primary); text-decoration: none;">02-2378-8288</a>
                     </p>
                     <p style="margin-top: 2rem;">歡迎來電預約白內障手術或眼科檢查</p>
                 </div>
-                <div class="info-card">
-                    <h3>🕐 診所營業時間</h3>
-                    <p>
-                        <strong>週一、週二、週四、週五、週六</strong><br>
-                        早診：09:00 - 12:00<br><br>
-                        <strong>週一、週二、週四、週五</strong><br>
-                        晚診：17:00 - 21:00<br><br>
-                        ※ 週三、週日休診<br>
-                    </p>
+                <div class="info-card reveal reveal-delay-1">
+                    <h3>🕐 門診時刻表</h3>
+                    <table class="schedule-table" id="scheduleTable">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>一</th>
+                                <th>二</th>
+                                <th>三</th>
+                                <th>四</th>
+                                <th>五</th>
+                                <th>六</th>
+                                <th>日</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight:700;text-align:left;">早診<br><span style="font-size:0.8em;opacity:0.7;">09–12</span></td>
+                                <td class="sch-open">●</td>
+                                <td class="sch-open">●</td>
+                                <td class="sch-closed">休</td>
+                                <td class="sch-open">●</td>
+                                <td class="sch-open">●</td>
+                                <td class="sch-open">●</td>
+                                <td class="sch-closed">休</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight:700;text-align:left;">晚診<br><span style="font-size:0.8em;opacity:0.7;">17–21</span></td>
+                                <td class="sch-open">●</td>
+                                <td class="sch-open">●</td>
+                                <td class="sch-closed">休</td>
+                                <td class="sch-open">●</td>
+                                <td class="sch-open">●</td>
+                                <td class="sch-closed">–</td>
+                                <td class="sch-closed">休</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="schedule-note">● 看診　休 休診</p>
                 </div>
-                <a href="https://www.google.com/maps/place/合安眼科診所+Health+Eye+Clinic/@25.0329,121.5654,17z/" target="_blank" class="info-card" style="text-decoration: none; color: white; display: block;">
+                <a href="https://www.google.com/maps/place/合安眼科診所+Health+Eye+Clinic/@25.0329,121.5654,17z/" target="_blank" class="info-card reveal reveal-delay-2" style="text-decoration: none; color: white; display: block;">
                     <h3>📍 診所地址</h3>
                     <p>
                         台北市信義區<br>基隆路二段189號<br><br>
@@ -2410,6 +2770,18 @@
     </script>
 
     <script>
+        // ===== Hamburger Menu =====
+        function toggleMenu() {
+            document.getElementById('hamburger').classList.toggle('active');
+            document.getElementById('navMenu').classList.toggle('open');
+            document.getElementById('menuOverlay').classList.toggle('active');
+        }
+        function closeMenu() {
+            document.getElementById('hamburger').classList.remove('active');
+            document.getElementById('navMenu').classList.remove('open');
+            document.getElementById('menuOverlay').classList.remove('active');
+        }
+
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 100) {
@@ -2422,12 +2794,49 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
+                closeMenu();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
+
+        // ===== FAQ Toggle =====
+        function toggleFaq(el) {
+            const item = el.parentElement;
+            const wasActive = item.classList.contains('active');
+            // close all
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+            if (!wasActive) item.classList.add('active');
+        }
+
+        // ===== Scroll Reveal =====
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // ===== Schedule: Highlight today =====
+        (function() {
+            const dayIndex = new Date().getDay(); // 0=Sun
+            const colMap = { 1:1, 2:2, 3:3, 4:4, 5:5, 6:6, 0:7 }; // map to table col
+            const col = colMap[dayIndex];
+            const table = document.getElementById('scheduleTable');
+            if (table) {
+                table.querySelectorAll('tbody tr').forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    if (cells[col]) cells[col].classList.add('sch-today');
+                });
+                const thCells = table.querySelectorAll('thead th');
+                if (thCells[col]) thCells[col].classList.add('sch-today');
+            }
+        })();
 
         // ===== Review Modal =====
         let rvRating = 0;
