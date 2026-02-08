@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemascript.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://healtheyeclinic.github.io/hec/</loc>
+    <lastmod>2025-02-08</lastmod>
+    <priority>1.0</priority>
+  </url>
+</urlset>
+```
+
+然後回到 Search Console 左側「Sitemap」→ 提交 `https://healtheyeclinic.github.io/hec/sitemap.xml`
+
+**第三步：建立 robots.txt**
+
+同樣在 repo 根目錄新增 `robots.txt`：
+```
+User-agent: *
+Allow: /
+Sitemap: https://healtheyeclinic.github.io/hec/sitemap.xml
